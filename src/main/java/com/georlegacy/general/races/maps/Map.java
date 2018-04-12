@@ -51,6 +51,36 @@ public class Map {
         this.playRegionP2 = this.parseVector(mapData.getString("Regions.Play.Pos2"));
     }
 
+    public boolean setName(String name) {
+        if (this.name.equals(name)) return false;
+        this.name = name;
+        return true;
+    }
+
+    public boolean setAuthorName(String name) {
+        if (this.authorName.equals(name)) return false;
+        this.authorName = name;
+        return true;
+    }
+
+    public boolean setMaxPlayers(int mp) {
+        if (this.maxPlayers==mp) return false;
+        this.maxPlayers = mp;
+        return true;
+    }
+
+    public boolean addSpawnPoint(Vector spawn) {
+        List<Vector> points = new ArrayList<Vector>();
+        for (Vector v : this.spawnPoints) {
+            if (v.equals(spawn)) return false;
+            points.add(v);
+        }
+        points.add(spawn);
+        this.spawnPoints = (Vector[t]) points.toArray();
+        return true;
+    }
+
+
     private Vector[] parseVector(String[] s) {
         List<Vector> v = new ArrayList<Vector>();
         for (String l : s) {
