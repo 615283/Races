@@ -1,6 +1,5 @@
 package com.georlegacy.general.races.maps;
 
-import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.util.Vector;
 
@@ -36,11 +35,20 @@ public class Map {
             return;
         }
 
+        this.dataFile = f;
         this.isSetup = mapData.getBoolean("IsSetup");
         this.name = mapData.getString("Info.Name");
         this.authorName = mapData.getString("Info.Author");
         this.maxPlayers = mapData.getInt("GamePlay.MaxPlayers");
         this.spawnPoints = this.parseVector((String[]) mapData.getStringList("Loading.SpawnPoints").toArray());
+        this.barrierP1 = this.parseVector(mapData.getString("Regions.Barrier.Pos1"));
+        this.barrierP2 = this.parseVector(mapData.getString("Regions.Barrier.Pos2"));
+        this.finishP1 = this.parseVector(mapData.getString("Regions.Finish.Pos1"));
+        this.finishP2 = this.parseVector(mapData.getString("Regions.Finish.Pos2"));
+        this.mapRegionP1 = this.parseVector(mapData.getString("Regions.Map.Pos1"));
+        this.mapRegionP2 = this.parseVector(mapData.getString("Regions.Map.Pos2"));
+        this.playRegionP1 = this.parseVector(mapData.getString("Regions.Play.Pos1"));
+        this.playRegionP2 = this.parseVector(mapData.getString("Regions.Play.Pos2"));
     }
 
     private Vector[] parseVector(String[] s) {
@@ -54,6 +62,15 @@ public class Map {
             ));
         }
         return (Vector[]) v.toArray();
+    }
+
+    private Vector parseVector(String s) {
+        String[] coords = s.split(";");
+        return new Vector(
+                Integer.parseInt(coords[0]),
+                Integer.parseInt(coords[1]),
+                Integer.parseInt(coords[2])
+        );
     }
 
 }
