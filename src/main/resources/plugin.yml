@@ -1,3 +1,4 @@
 name: ${artifactId}
 version: ${project.version}
 main: ${groupId}.${artifactId}
+depend: [WorldEdit]

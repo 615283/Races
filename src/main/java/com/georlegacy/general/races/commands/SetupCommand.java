@@ -46,8 +46,7 @@ public class SetupCommand implements CommandExecutor {
             case "spawnpoint":
                 spawnPoint.execute((Player) sender, args);
         }
-
-        return false;
+        return true;
     }
 
 }
