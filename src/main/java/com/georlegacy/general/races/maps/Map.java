@@ -10,25 +10,26 @@ import java.util.List;
 
 public class Map {
 
-    File dataFile;
+    private File dataFile;
 
-    boolean isSetup;
-    String name;
-    String authorName;
-    int maxPlayers;
-    Vector[] spawnPoints;
+    private boolean isSetup;
+    private String name;
+    private String authorName;
+    private int maxPlayers;
+    private Vector[] spawnPoints;
 
-    Vector barrierP1;
-    Vector barrierP2;
+    private Vector barrierP1;
+    private Vector barrierP2;
 
-    Vector finishP1;
-    Vector finishP2;
+    private Vector finishP1;
+    private Vector finishP2;
 
-    Vector mapRegionP1;
-    Vector mapRegionP2;
+    private Vector mapRegionP1;
+    private Vector mapRegionP2;
 
-    Vector playRegionP1;
-    Vector playRegionP2;
+    private Vector playRegionP1;
+    private Vector playRegionP2;
+
 
     public Map(File f) {
         if (!f.exists()) return;
@@ -52,6 +53,60 @@ public class Map {
         this.playRegionP1 = this.parseVector(mapData.getString("Regions.Play.Pos1"));
         this.playRegionP2 = this.parseVector(mapData.getString("Regions.Play.Pos2"));
     }
+
+
+    public boolean isSetup() {
+        return isSetup;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getAuthorName() {
+        return this.authorName;
+    }
+
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    public Vector[] getSpawnPoints() {
+        return spawnPoints;
+    }
+
+    public Vector getBarrierP1() {
+        return barrierP1;
+    }
+
+    public Vector getBarrierP2() {
+        return barrierP2;
+    }
+
+    public Vector getFinishP1() {
+        return finishP1;
+    }
+
+    public Vector getFinishP2() {
+        return finishP2;
+    }
+
+    public Vector getMapRegionP1() {
+        return mapRegionP1;
+    }
+
+    public Vector getMapRegionP2() {
+        return mapRegionP2;
+    }
+
+    public Vector getPlayRegionP1() {
+        return playRegionP1;
+    }
+
+    public Vector getPlayRegionP2() {
+        return playRegionP2;
+    }
+
 
     public boolean setName(String name) {
         if (this.name.equals(name)) return false;
