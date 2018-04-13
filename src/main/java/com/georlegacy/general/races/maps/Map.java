@@ -5,6 +5,7 @@ import org.bukkit.util.Vector;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +53,23 @@ public class Map {
         this.mapRegionP2 = this.parseVector(mapData.getString("Regions.Map.Pos2"));
         this.playRegionP1 = this.parseVector(mapData.getString("Regions.Play.Pos1"));
         this.playRegionP2 = this.parseVector(mapData.getString("Regions.Play.Pos2"));
+    }
+
+    public Map(String name) {
+        new File("plugins/Races/maps/" + name).mkdirs();
+        File f = new File("plugins/Races/maps/" + name + "/map.yml");
+
+        if (f.exists()) return;
+        try {
+            Files.copy(this.getClass().getClassLoader().getResourceAsStream("map.yml"), f.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        this.dataFile = f;
+        this.isSetup = false;
+        this.name = name;
     }
 
 
