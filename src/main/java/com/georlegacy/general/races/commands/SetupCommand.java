@@ -9,8 +9,11 @@ import org.bukkit.entity.Player;
 
 public class SetupCommand implements CommandExecutor {
     private BarrierSet barrierSet = new BarrierSet();
+    private DeleteMap deleteMap = new DeleteMap();
+    private FinishMap finishMap = new FinishMap();
     private FinishRegionSet finishRegionSet = new FinishRegionSet();
     private MapRegionSet mapRegionSet = new MapRegionSet();
+    private NewMap newMap = new NewMap();
     private PlayRegionSet playRegionSet = new PlayRegionSet();
     private SpawnPoint spawnPoint = new SpawnPoint();
 
@@ -47,13 +50,13 @@ public class SetupCommand implements CommandExecutor {
                 spawnPoint.execute((Player) sender, args);
                 break;
             case "finish":
-
+                finishMap.execute((Player) sender, args);
                 break;
             case "new":
-
+                newMap.execute((Player) sender, args);
                 break;
             case "delete":
-
+                deleteMap.execute((Player) sender, args);
                 break;
         }
         return true;
