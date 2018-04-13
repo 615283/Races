@@ -4,6 +4,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.util.Vector;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class Map {
     Vector playRegionP2;
 
     public Map(File f) {
+        if (!f.exists()) return;
         YamlConfiguration mapData = YamlConfiguration.loadConfiguration(f);
         if (!mapData.getBoolean("IsSetup")) {
             return;
@@ -54,18 +56,21 @@ public class Map {
     public boolean setName(String name) {
         if (this.name.equals(name)) return false;
         this.name = name;
+        save(this.dataFile);
         return true;
     }
 
     public boolean setAuthorName(String name) {
         if (this.authorName.equals(name)) return false;
         this.authorName = name;
+        save(this.dataFile);
         return true;
     }
 
     public boolean setMaxPlayers(int mp) {
         if (this.maxPlayers==mp) return false;
         this.maxPlayers = mp;
+        save(this.dataFile);
         return true;
     }
 
@@ -77,6 +82,7 @@ public class Map {
         }
         points.add(spawn);
         this.spawnPoints = (Vector[]) points.toArray();
+        save(this.dataFile);
         return true;
     }
 
@@ -91,59 +97,90 @@ public class Map {
             points.add(v);
         }
         this.spawnPoints = (Vector[]) points.toArray();
+        save(this.dataFile);
         return wc;
     }
 
     public boolean setBarrierP1(Vector p1) {
         if (this.barrierP1==p1) return false;
         this.barrierP1 = p1;
+        save(this.dataFile);
         return true;
     }
 
     public boolean setBarrierP2(Vector p2) {
         if (this.barrierP2==p2) return false;
         this.barrierP2 = p2;
+        save(this.dataFile);
         return true;
     }
 
     public boolean setFinishP1(Vector p1) {
         if (this.finishP1==p1) return false;
         this.finishP1 = p1;
+        save(this.dataFile);
         return true;
     }
 
     public boolean setFinishP2(Vector p2) {
         if (this.finishP2==p2) return false;
         this.finishP2 = p2;
+        save(this.dataFile);
         return true;
     }
 
     public boolean setMapRegionP1(Vector p1) {
         if (this.mapRegionP1==p1) return false;
         this.mapRegionP1 = p1;
+        save(this.dataFile);
         return true;
     }
 
     public boolean setMapRegionP2(Vector p2) {
         if (this.mapRegionP2==p2) return false;
         this.mapRegionP2 = p2;
+        save(this.dataFile);
         return true;
     }
 
     public boolean setPlayRegionP1(Vector p1) {
         if (this.playRegionP1==p1) return false;
         this.playRegionP1 = p1;
+        save(this.dataFile);
         return true;
     }
 
     public boolean setPlayRegionP2(Vector p2) {
         if (this.playRegionP2==p2) return false;
         this.playRegionP2 = p2;
+        save(this.dataFile);
         return true;
     }
 
 
-
+    private boolean save(File dataFile) {
+        YamlConfiguration mapData = YamlConfiguration.loadConfiguration(dataFile);
+        mapData.set("IsSetup", this.isSetup);
+        mapData.set("Info.Name", this.name);
+        mapData.set("Info.Author", this.authorName);
+        mapData.set("GamePlay.MaxPlayers", this.maxPlayers);
+        mapData.set("Loading.SpawnPoints", this.spawnPoints);
+        mapData.set("Regions.Barrier.Pos1", this.barrierP1);
+        mapData.set("Regions.Barrier.Pos2", this.barrierP2);
+        mapData.set("Regions.Finish.Pos1", this.finishP1);
+        mapData.set("Regions.Finish.Pos2", this.finishP2);
+        mapData.set("Regions.Map.Pos1", this.mapRegionP1);
+        mapData.set("Regions.Map.Pos2", this.mapRegionP2);
+        mapData.set("Regions.Play.Pos1", this.playRegionP1);
+        mapData.set("Regions.Play.Pos2", this.playRegionP2);
+        try {
+            mapData.save(dataFile);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     private Vector[] parseVector(String[] s) {
         List<Vector> v = new ArrayList<Vector>();
