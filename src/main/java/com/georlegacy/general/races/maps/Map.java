@@ -76,9 +76,73 @@ public class Map {
             points.add(v);
         }
         points.add(spawn);
-        this.spawnPoints = (Vector[t]) points.toArray();
+        this.spawnPoints = (Vector[]) points.toArray();
         return true;
     }
+
+    public boolean removeSpawnPoint(Vector spawn) {
+        boolean wc = false;
+        List<Vector> points = new ArrayList<Vector>();
+        for (Vector v : this.spawnPoints) {
+            if (v.equals(spawn)) {
+                wc = true;
+                continue;
+            }
+            points.add(v);
+        }
+        this.spawnPoints = (Vector[]) points.toArray();
+        return wc;
+    }
+
+    public boolean setBarrierP1(Vector p1) {
+        if (this.barrierP1==p1) return false;
+        this.barrierP1 = p1;
+        return true;
+    }
+
+    public boolean setBarrierP2(Vector p2) {
+        if (this.barrierP2==p2) return false;
+        this.barrierP2 = p2;
+        return true;
+    }
+
+    public boolean setFinishP1(Vector p1) {
+        if (this.finishP1==p1) return false;
+        this.finishP1 = p1;
+        return true;
+    }
+
+    public boolean setFinishP2(Vector p2) {
+        if (this.finishP2==p2) return false;
+        this.finishP2 = p2;
+        return true;
+    }
+
+    public boolean setMapRegionP1(Vector p1) {
+        if (this.mapRegionP1==p1) return false;
+        this.mapRegionP1 = p1;
+        return true;
+    }
+
+    public boolean setMapRegionP2(Vector p2) {
+        if (this.mapRegionP2==p2) return false;
+        this.mapRegionP2 = p2;
+        return true;
+    }
+
+    public boolean setPlayRegionP1(Vector p1) {
+        if (this.playRegionP1==p1) return false;
+        this.playRegionP1 = p1;
+        return true;
+    }
+
+    public boolean setPlayRegionP2(Vector p2) {
+        if (this.playRegionP2==p2) return false;
+        this.playRegionP2 = p2;
+        return true;
+    }
+
+
 
 
     private Vector[] parseVector(String[] s) {
