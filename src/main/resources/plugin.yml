@@ -5,7 +5,13 @@ depend: [WorldEdit]
 commands:
   races:
     description: Main command for Races plugin
-    usage: &7Use &4/races help general &7to see help
+    usage: Use /races help general to see help
   racessetup:
     description: Allows setting up of maps
-    usage: &7Use &4/races help setup &7to see help
+    usage: Use /races help setup to see help
+  racesconfirm:
+    description: Confirms a command
+    help: Use /races help confirm to see help
+  racescancel:
+    description: Cancels a command
+    help: Use /races help confirm to see help

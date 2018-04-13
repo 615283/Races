@@ -2,6 +2,8 @@
 
 package com.georlegacy.general.races;
 
+import com.georlegacy.general.races.commands.CancelCommand;
+import com.georlegacy.general.races.commands.ConfirmCommand;
 import com.georlegacy.general.races.commands.SetupCommand;
 import com.georlegacy.general.races.commands.base.ConfirmHandler;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
@@ -37,6 +39,12 @@ public class Races extends JavaPlugin {
 
         PluginCommand racesSetup = getCommand("racessetup");
         racesSetup.setExecutor(new SetupCommand());
+
+        PluginCommand racesConfirm = getCommand("racesConfirm");
+        racesConfirm.setExecutor(new ConfirmCommand());
+
+        PluginCommand racesCancel = getCommand("racesCancel");
+        racesCancel.setExecutor(new CancelCommand());
     }
 
     public static WorldEditPlugin getWorldEdit() {
