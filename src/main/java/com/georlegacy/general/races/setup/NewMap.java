@@ -2,6 +2,7 @@ package com.georlegacy.general.races.setup;
 
 import com.georlegacy.general.races.Races;
 import com.georlegacy.general.races.util.ConfirmAction;
+import com.georlegacy.general.races.util.GetRaces;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -13,7 +14,7 @@ public class NewMap {
             return;
         }
 
-        Races.getPlugin().getConfirmHandler().addAction(player, new ConfirmAction() {
+        GetRaces.races.getConfirmHandler().addAction(player, new ConfirmAction() {
             @Override
             public void confirm() {
 

@@ -6,6 +6,7 @@ import com.georlegacy.general.races.commands.CancelCommand;
 import com.georlegacy.general.races.commands.ConfirmCommand;
 import com.georlegacy.general.races.commands.SetupCommand;
 import com.georlegacy.general.races.commands.base.ConfirmHandler;
+import com.georlegacy.general.races.util.GetRaces;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
@@ -13,9 +14,6 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Races extends JavaPlugin {
-    public static Races getPlugin() {
-        return new Races();
-    }
 
     private ConfirmHandler confirmHandler = new ConfirmHandler();
     public ConfirmHandler getConfirmHandler() {
@@ -24,6 +22,8 @@ public class Races extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        GetRaces gr = new GetRaces(this);
+
         PluginManager pm = getServer().getPluginManager();
 
         registerCommands();
