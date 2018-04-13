@@ -2,3 +2,10 @@ name: ${artifactId}
 version: ${project.version}
 main: ${groupId}.${artifactId}
 depend: [WorldEdit]
+commands:
+  races:
+    description: Main command for Races plugin
+    usage: &7Use &4/races help general &7to see help
+  racessetup:
+    description: Allows setting up of maps
+    usage: &7Use &4/races help setup &7to see help
