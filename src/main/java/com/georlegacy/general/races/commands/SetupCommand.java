@@ -45,6 +45,16 @@ public class SetupCommand implements CommandExecutor {
                 break;
             case "spawnpoint":
                 spawnPoint.execute((Player) sender, args);
+                break;
+            case "finish":
+
+                break;
+            case "new":
+
+                break;
+            case "delete":
+
+                break;
         }
         return true;
     }

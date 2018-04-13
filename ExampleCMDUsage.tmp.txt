@@ -4,6 +4,6 @@ races help setup:
     racessetup mapregion <mapname> <1|2> [<x>,<y>,<z>]
     racessetup playregion <mapname> <1|2> [<x>,<y>,<z>]
     racessetup spawnpoint <mapname> <add|remove> [<x>,<y>,<z>]
-   *racessetup finish <mapname>
-   *racessetup new <mapname> [templateworldname]
-   *racessetup delete <mapname>
+    racessetup finish <mapname>
+    racessetup new <mapname> [templateworldname]
+    racessetup delete <mapname>
