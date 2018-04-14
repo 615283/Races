@@ -31,6 +31,11 @@ public class Map {
     private Vector playRegionP1;
     private Vector playRegionP2;
 
+    public static Map getByName(String name) {
+        File f = new File("plugins/Races/maps/" + name + "/map.yml");
+        if (f.exists()) return new Map(f);
+        else return null;
+    }
 
     public Map(File f) {
         if (!f.exists()) return;
