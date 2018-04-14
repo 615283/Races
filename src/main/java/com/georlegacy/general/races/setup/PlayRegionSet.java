@@ -7,7 +7,11 @@ public class PlayRegionSet {
 
     public void execute(Player player, String[] args) {
         if (args.length == 1) {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSorry! &7You need to provide a map to edit and other required arguments. Use &4/races help setup &7to see help on this command.s"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSorry! &7You need to provide a map to edit and other required arguments. Use &4/races help setup &7to see help on this command."));
+            return;
+        }
+        if (args.length == 2) {
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSorry! &7You need to provide the position you wish to set for the barrier. Use &4/races help setup &7to see help on this command."));
             return;
         }
 
