@@ -33,7 +33,9 @@ public class Map {
 
     public static Map getByName(String name) {
         File f = new File("plugins/Races/maps/" + name + "/map.yml");
-        if (f.exists()) return new Map(f);
+        if (f.exists()) {
+            return new Map(f);
+        }
         else return null;
     }
 
