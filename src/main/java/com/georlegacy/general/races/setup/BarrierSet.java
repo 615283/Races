@@ -37,16 +37,24 @@ public class BarrierSet {
             if (args.length == 3) {
                 String loc = player.getLocation().getBlockX() + ", " + player.getLocation().getBlockY() + ", " + player.getLocation();
                 if (args[2].equals("1")) {
-                    map.setBarrierP1(player.getLocation().toVector());
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSuccess! &7The 1st position for the barrier has been set to &4" + loc + "&7."));
+                    if (map.setBarrierP1(player.getLocation().toVector())) {
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSuccess! &7The 1st position for the barrier has been set to &4" + loc + "&7."));
+                    }
+                    else {
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lWarning! &7This position was already set the position you set it to previously."));
+                    }
                     if (map.isSetup()) {
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lWarning! &7This map has already finalised setup and will need to be finalised again. It will not be playable until this is done."));
                     }
                     return;
                 }
                 if (args[2].equals("2")) {
-                    map.setBarrierP2(player.getLocation().toVector());
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSuccess! &7The 2nd position for the barrier has been set to &4" + loc + "&7."));
+                    if (map.setBarrierP2(player.getLocation().toVector())) {
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSuccess! &7The 2nd position for the barrier has been set to &4" + loc + "&7."));
+                    }
+                    else {
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lWarning! &7This position was already set the position you set it to previously."));
+                    }
                     if (map.isSetup()) {
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lWarning! &7This map has already finalised setup and will need to be finalised again. It will not be playable until this is done."));
                     }
