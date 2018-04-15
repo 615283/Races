@@ -237,6 +237,12 @@ public class Map {
         return true;
     }
 
+    public boolean setSetup(boolean setup) {
+        if (this.isSetup==setup) return false;
+        isSetup = setup;
+        save(this.dataFile);
+        return true;
+    }
 
     private boolean save(File dataFile) {
         YamlConfiguration mapData = YamlConfiguration.loadConfiguration(dataFile);
