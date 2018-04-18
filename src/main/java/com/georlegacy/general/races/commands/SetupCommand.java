@@ -16,6 +16,7 @@ public class SetupCommand implements CommandExecutor {
     private NewMap newMap = new NewMap();
     private PlayRegionSet playRegionSet = new PlayRegionSet();
     private SpawnPoint spawnPoint = new SpawnPoint();
+    private TimeSet timeSet = new TimeSet();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -57,6 +58,9 @@ public class SetupCommand implements CommandExecutor {
                 break;
             case "delete":
                 deleteMap.execute((Player) sender, args);
+                break;
+            case "time":
+                timeSet.execute((Player) sender, args);
                 break;
         }
         return true;

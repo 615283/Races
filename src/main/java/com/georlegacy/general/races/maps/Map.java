@@ -19,6 +19,8 @@ public class Map {
     private int maxPlayers;
     private Vector[] spawnPoints;
 
+    private int time;
+
     private Vector barrierP1;
     private Vector barrierP2;
 
@@ -51,6 +53,7 @@ public class Map {
         this.name = mapData.getString("Info.Name");
         this.authorName = mapData.getString("Info.Author");
         this.maxPlayers = mapData.getInt("GamePlay.MaxPlayers");
+        this.time = mapData.getInt("Loading.Time");
         this.spawnPoints = this.parseVector((String[]) mapData.getStringList("Loading.SpawnPoints").toArray());
         this.barrierP1 = this.parseVector(mapData.getString("Regions.Barrier.Pos1"));
         this.barrierP2 = this.parseVector(mapData.getString("Regions.Barrier.Pos2"));
@@ -79,6 +82,9 @@ public class Map {
         this.name = name;
     }
 
+    public int getTime() {
+        return time;
+    }
 
     public boolean isSetup() {
         return isSetup;
@@ -150,6 +156,13 @@ public class Map {
     public boolean setMaxPlayers(int mp) {
         if (this.maxPlayers==mp) return false;
         this.maxPlayers = mp;
+        save(this.dataFile);
+        return true;
+    }
+
+    public boolean setTime(int nt) {
+        if (this.time==nt) return false;
+        this.time = nt;
         save(this.dataFile);
         return true;
     }
@@ -250,6 +263,7 @@ public class Map {
         mapData.set("Info.Name", this.name);
         mapData.set("Info.Author", this.authorName);
         mapData.set("GamePlay.MaxPlayers", this.maxPlayers);
+        mapData.set("Loading.Time", this.time);
         mapData.set("Loading.SpawnPoints", this.spawnPoints);
         mapData.set("Regions.Barrier.Pos1", this.barrierP1);
         mapData.set("Regions.Barrier.Pos2", this.barrierP2);
