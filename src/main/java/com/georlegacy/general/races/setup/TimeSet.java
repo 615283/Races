@@ -13,6 +13,10 @@ public class TimeSet {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSorry! &7You need to provide a map to edit and other required arguments. Use &4/races help setup &7to see help on this command."));
             return;
         }
+        if (args.length == 2) {
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSorry! &7You need to provide the ticks you wish to set the time to. Use &4/races help setup &7to see help on this command."));
+            return;
+        }
         if (args.length == 3) {
             Map map = Map.getByName(args[1]);
             if (map == null) {
@@ -50,6 +54,7 @@ public class TimeSet {
             }
             return;
         }
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSorry! &7You appear to have provided too many arguments. Use &4/races help setup &7to see help on this command."));
     }
 
 }
