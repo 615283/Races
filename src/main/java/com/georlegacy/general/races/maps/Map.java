@@ -5,11 +5,13 @@ import org.bukkit.util.Vector;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-public class Map extends Object {
+public class Map extends Object implements Serializable {
 
     private File dataFile;
 
@@ -18,6 +20,8 @@ public class Map extends Object {
     private String authorName;
     private int maxPlayers;
     private Vector[] spawnPoints;
+    private int yaw;
+    private int pitch;
 
     private int time;
 
@@ -55,6 +59,8 @@ public class Map extends Object {
         this.maxPlayers = mapData.getInt("GamePlay.MaxPlayers");
         this.time = mapData.getInt("Loading.Time");
         this.spawnPoints = this.parseVector((String[]) mapData.getStringList("Loading.SpawnPoints").toArray());
+        this.yaw = mapData.getInt("Loading.StartDirection.YAW");
+        this.pitch = mapData.getInt("Loading.StartDirection.PITCH");
         this.barrierP1 = this.parseVector(mapData.getString("Regions.Barrier.Pos1"));
         this.barrierP2 = this.parseVector(mapData.getString("Regions.Barrier.Pos2"));
         this.finishP1 = this.parseVector(mapData.getString("Regions.Finish.Pos1"));
@@ -104,6 +110,14 @@ public class Map extends Object {
 
     public Vector[] getSpawnPoints() {
         return spawnPoints;
+    }
+
+    public int getYaw() {
+        return yaw;
+    }
+
+    public int getPitch() {
+        return pitch;
     }
 
     public Vector getBarrierP1() {
@@ -192,6 +206,20 @@ public class Map extends Object {
         this.spawnPoints = (Vector[]) points.toArray();
         save(this.dataFile);
         return wc;
+    }
+
+    public boolean setYaw(int yaw) {
+        if (this.yaw==yaw) return false;
+        this.yaw = yaw;
+        save(this.dataFile);
+        return true;
+    }
+
+    public boolean setPitch(int pitch) {
+        if (this.pitch==pitch) return false;
+        this.pitch = pitch;
+        save(this.dataFile);
+        return true;
     }
 
     public boolean setBarrierP1(Vector p1) {
